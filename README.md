@@ -8,7 +8,7 @@
 
 Configure a lounge chair in 3D: pick frame, upholstery, colour, base and armrests, watch the price update, share the exact configuration as a link, or save a PNG of it.
 
-**Live demo:** https://forma3d-nine.vercel.app · **Personal project.** The prices are demo numbers, this is not a real store.
+**Live demo:** https://forma3d-iota.vercel.app · **Personal project.** The prices are demo numbers, this is not a real store.
 
 ![Forma3D configurator](docs/configurator.png)
 
