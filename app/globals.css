@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #e9e4d8;
+  --panel: #fbfaf6;
+  --border: rgba(26, 25, 21, 0.12);
+  --border-strong: rgba(26, 25, 21, 0.24);
+  --text: #1a1915;
+  --text-2: #55524a;
+  --text-3: #6b675d;
+  --accent: #1f6f54;
+  --on-accent: #ffffff;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-ink-3: var(--text-3);
+  --color-accent: var(--accent);
+  --font-display: var(--font-instrument), Georgia, serif;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    font-weight: 400;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text);
+    transition:
+      background-color 200ms var(--ease),
+      transform 200ms var(--ease);
+  }
+  .btn:hover {
+    background: rgba(26, 25, 21, 0.06);
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+  .btn-primary:hover {
+    background: var(--accent);
+    filter: brightness(1.1);
+  }
+  .skeleton {
+    background: linear-gradient(90deg, #dcd6c7, #ebe6da, #dcd6c7);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
